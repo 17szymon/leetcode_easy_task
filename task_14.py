@@ -2,39 +2,36 @@ from typing import List
 
 
 strs1 = ["flower", "flow", "flight"]
-strs = ["cir", "car"]
+strs = ["reflower", "flow", "flight"]
 
 
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
         short_word = min(strs, key=len)
         output = []
+        find_letetter_second = True
         if len(strs) == 1:
             return "".join(strs)
 
-        for letter_short in short_word:
-
+        for id_short, letter_short in enumerate(short_word):
             for word in strs:
-
                 if word == short_word:
                     continue
-                for letter_word in word:
+                for id_word, letter_word in enumerate(word):
+                    if letter_word == letter_short and id_short == id_word:
+                        output.append(letter_short)
+                        break
 
-                    if letter_short in word:
-                        find_letetter = True
-                        continue
-                    else:
-                        find_letetter = False
-                        continue
-                if letter_word == letter_short:
-                    find_letetter = False
+        seen_elements = set()
+        repeated_elements = []
 
-            if find_letetter == True:
-                output.append(letter_short)
-        if output is []:
-            return ""
-        else:
-            return "".join(output)
+        for element in output:
+            if element not in seen_elements:
+                seen_elements.add(element)
+            elif element not in repeated_elements:
+                repeated_elements.append(element)
+
+        return "".join(repeated_elements)
 
 
 solution = Solution()
