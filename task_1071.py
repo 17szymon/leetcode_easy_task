@@ -1,35 +1,40 @@
-str1 = "ABCABC"
-str2 = "ABC"
+str16 = "ABCABC"
+str26 = "ABC"
 
 
-str122 = "ABABAB"
-str221 = "ABAB"
-str1423 = "TAUXXTAUXXTAUXXTAUXXTAUXX"
-str2432 = "TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX"
+str1 = "ABABAB"
+str2 = "ABAB"
+str31 = "TAUXXTAUXXTAUXXTAUXXTAUXX"
+str22 = "TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX"
 str14342 = "CXTXNCXTXNCXTXNCXTXNCXTXN"
 str223423 = "CXTXNCXTXNCXTXNCXTXNCXTXNCXTXNCXTXNCXTXNCXTXNCXTXNCXTXNCXTXNCXTXN"
 str12 = "ABABABAB"
 str22 = "ABAB"
-str1 = "LEET"
-str2 = "CODE"
+str12 = "LEET"
+str22 = "CODE"
+str1 = "EFGABC"
+str2 = "ABC"
 
 
 class Solution:
     def gcdOfStrings(self, str1: str, str2: str) -> str:
-
         output = []
-
-        last: str = None
+        first = None
         x = zip(reversed(str1), reversed(str2))
         for char1, char2 in x:
-            if char1 == last and len(output) != 1:
-                break
-            if char1 == char2:
-                output.append(char1)
-                last = output[0]
+            if char1 != char2:
+                return ""
 
-        output = reversed(output)
-        return "".join(output)
+        new_str = str1.replace(str2, "")
+        if len(new_str) == 0:
+            return str2
+        else:
+            for i in new_str:
+                if len(output) > 1 and i == first:
+                    return "".join(output)
+                output.append(i)
+                first = output[0]
+            return "".join(output)
 
 
 solution = Solution()
