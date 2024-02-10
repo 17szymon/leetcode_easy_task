@@ -1,36 +1,32 @@
-str81 = "ABCABC"
-str28 = "ABC"
+str1 = "ABCABC"
+str2 = "ABC"
 
 
 str122 = "ABABAB"
 str221 = "ABAB"
-str1234 = "TAUXXTAUXXTAUXXTAUXXTAUXX"
-str2324 = "TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX"
-str1 = "CXTXNCXTXNCXTXNCXTXNCXTXN"
-str2 = "CXTXNCXTXNCXTXNCXTXNCXTXNCXTXNCXTXNCXTXNCXTXNCXTXNCXTXNCXTXNCXTXN"
+str1423 = "TAUXXTAUXXTAUXXTAUXXTAUXX"
+str2432 = "TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX"
+str14342 = "CXTXNCXTXNCXTXNCXTXNCXTXN"
+str223423 = "CXTXNCXTXNCXTXNCXTXNCXTXNCXTXNCXTXNCXTXNCXTXNCXTXNCXTXNCXTXNCXTXN"
+str12 = "ABABABAB"
+str22 = "ABAB"
+str1 = "LEET"
+str2 = "CODE"
 
 
 class Solution:
     def gcdOfStrings(self, str1: str, str2: str) -> str:
 
         output = []
-        id = 0
-        lst_id = 0
-        first: str = None
+
+        last: str = None
         x = zip(reversed(str1), reversed(str2))
         for char1, char2 in x:
+            if char1 == last and len(output) != 1:
+                break
             if char1 == char2:
-                if char1 in output and char1 != first:
-                    id += 1
-                    continue
-                elif id != lst_id:
-                    break
-
-                else:
-                    output.append(char1)
-                    first = output[-1]
-                    id += 1
-                    lst_id = id
+                output.append(char1)
+                last = output[0]
 
         output = reversed(output)
         return "".join(output)
